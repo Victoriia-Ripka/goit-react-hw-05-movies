@@ -10,3 +10,30 @@ export const fetchFilms = async () => {
   const result = await response.data.results;
   return result;
 };
+
+export const fetchFilm = async id => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/movie/${id}?api_key=${API_KEY}`
+    );
+    const result = await response.data;
+    return result;
+  } catch (error) {
+    alert(error);
+  }
+};
+
+export const fetchFilmCast = async id => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}&language=en-US`
+    );
+    console.log(`${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}&language=en-US`)
+    const result = await response.data;
+    return result;
+  } catch (error) {
+    alert(error);
+  }
+};
+
+

@@ -1,47 +1,21 @@
-import { Routes, Route, NavLink } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import Home from './Home';
-import Movies from './Movies';
-import { fetchFilms } from 'api/api';
-import styled from '@emotion/styled';
+import { Routes, Route } from 'react-router-dom';
+import Home from '../pages/Home';
+import Movies from '../pages/Movies';
+import Movie from './Movie';
+import Layout from 'pages/layout';
+import { Review, Cast } from './MovieInfo';
 
 export const App = () => {
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    fetchFilms().then(data => setMovies([...data]));
-  }, []);
-
-  const StyledLink = styled(NavLink)`
-    color: black;
-
-    &.active {
-      color: orange;
-    }
-
-    :hover:not(.acive),
-    :focus-visible:not(.active) {
-      color: green;
-    }
-  `;
-
   return (
     <div>
-      <header>
-        <nav>
-        <StyledLink to="/" end>
-          Home
-        </StyledLink>
-        <StyledLink to="movies">Movies</StyledLink>
-      </nav>
-      </header>
-      
+      <Layout />
       <Routes>
-        <Route path="/" element={<Home movies={movies} />}></Route>
-        <Route path="/movies" element={<Movies />}>
-          <Route path="cast" element={<p>cast</p>}></Route>
-          <Route path="reviews" element={<p>rewiew</p>}></Route>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/movies/:movieID" element={<Movie/>} >
+          <Route path="cast" element={<Cast/>}></Route>
+          <Route path="reviews" element={<Review/>}></Route>
         </Route>
+        <Route path="/movies" element={<Movies/>}></Route>
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </div>
