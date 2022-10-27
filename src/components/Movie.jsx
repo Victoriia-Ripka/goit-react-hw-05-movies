@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchFilm } from 'api/api';
@@ -6,6 +6,11 @@ import { fetchFilm } from 'api/api';
 export default function Movie() {
   const movieID = useParams();
   const [movie, setMovie] = useState(null);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/movies', { replace: true });
+  };
 
   useEffect(() => {
     fetchFilm(movieID.movieID).then(data => setMovie(data));
@@ -16,7 +21,9 @@ export default function Movie() {
   } else
     return (
       <main>
-        <button>Go back</button>
+        <button type="button" onClick={handleClick}>
+          Go back
+        </button>
         <img
           src={
             movie.poster_path

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { fetchFilmsByQuery } from 'api/api';
 import ListOfContacts from '../components/listOfMovies';
 import Movie from '../components/Movie';
