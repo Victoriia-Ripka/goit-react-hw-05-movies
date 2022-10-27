@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
-import Home from '../pages/Home';
-import Movies from '../pages/Movies';
+import Home from '../pages/Home/Home';
+import Movies from '../pages/Movies/Movies';
 import Movie from './Movie';
-import AppBar from 'pages/AppBar';
-import ListOfContacts from './listOfMovies';
+import AppBar from 'pages/AppBar/AppBar';
+import ListOfContacts from './ListOfMovies/listOfMovies';
 import { Review, Cast } from './MovieInfo';
 import { useState } from 'react';
-import { NotFound } from 'pages/NotFound';
+import { NotFound } from 'pages/NotFound/NotFound';
 
 export const App = () => {
   const [movies, setMovies] = useState(null);

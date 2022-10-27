@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
+import { Main, Input, Form, Button, List } from './Movies.styled';
+import PropTypes from 'prop-types';
 import { fetchFilmsByQuery } from 'api/api';
-import ListOfContacts from '../components/listOfMovies';
-import Movie from '../components/Movie';
+import ListOfContacts from '../../components/ListOfMovies/listOfMovies';
+import Movie from '../../components/Movie';
 
 export default function Movies({ movie }) {
   const [query, setQuery] = useState('');
@@ -22,22 +24,30 @@ export default function Movies({ movie }) {
   useEffect(() => {
     if (query !== '') {
       fetchFilmsByQuery(query).then(data => setMovies(data));
-      // console.log(movies);
     }
   }, [query]);
 
   return (
-    <main>
+    <Main>
       {movie && <Movie movie={movie} />}
       {!movie && (
-        <form onSubmit={handleSubmit}>
-          <input type="text" value={value} onChange={handleChange}></input>
-          <button type="submit">Search</button>
-        </form>
+        <Form onSubmit={handleSubmit}>
+          <Input type="text" value={value} onChange={handleChange}></Input>
+          <Button type="submit">Search</Button>
+        </Form>
         // коли іде пошук, то в маршрутизації додається
       )}
-      {movies && <ListOfContacts movies={movies} />}
+      {movies && <List><ListOfContacts movies={movies} /></List> }
       <Outlet />
-    </main>
+    </Main>
   );
 }
+
+Movies.propTypes = {
+    movie: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string,
+      name: PropTypes.string,
+      poster_path: PropTypes.string,
+    }),
+};

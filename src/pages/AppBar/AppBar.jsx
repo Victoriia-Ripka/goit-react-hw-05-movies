@@ -1,14 +1,14 @@
-import { StyledLink } from './AppBar.styled';
+import { StyledLink, Header, Nav } from './AppBar.styled';
 
 export default function Layout() {
   return (
-    <header>
-      <nav>
+    <Header>
+      <Nav>
         <StyledLink to="/" end>
           Home
         </StyledLink>
         <StyledLink to="movies">Movies</StyledLink>
-      </nav>
-    </header>
+      </Nav>
+    </Header>
   );
 }

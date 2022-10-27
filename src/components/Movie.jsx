@@ -1,4 +1,4 @@
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet,  useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchFilm } from 'api/api';
@@ -6,11 +6,9 @@ import { fetchFilm } from 'api/api';
 export default function Movie() {
   const movieID = useParams();
   const [movie, setMovie] = useState(null);
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate('/movies', { replace: true });
-  };
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? "/";
+  console.log(location.state);
 
   useEffect(() => {
     fetchFilm(movieID.movieID).then(data => setMovie(data));
@@ -21,9 +19,7 @@ export default function Movie() {
   } else
     return (
       <main>
-        <button type="button" onClick={handleClick}>
-          Go back
-        </button>
+        <Link to={backLinkHref}>Go back</Link>
         <img
           src={
             movie.poster_path
@@ -35,9 +31,9 @@ export default function Movie() {
         ></img>
         <div>
           <h2>
-            {movie.title || movie.name} {movie.release_date.slice(0, 4)}
+            {movie.title || movie.name} ({movie.release_date.slice(0, 4)})
           </h2>
-          <p>User Score: {Math.round(movie.vote_average * 100) / 100}</p>
+          <p>User Score: {Math.round(movie.vote_average * 10)}%</p>
           <p>Overview</p>
           <p>{movie.overview}</p>
           <p>Ganres</p>
