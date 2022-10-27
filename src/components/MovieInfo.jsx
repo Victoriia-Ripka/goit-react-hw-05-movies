@@ -40,10 +40,10 @@ export const Cast = () => {
             <li key={actor.id}>
               <img
                 src={
-                  actor.poster_path
-                    ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
-                    : 'https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-actor-1-3.jpg'
-                }
+                    actor.profile_path
+                      ? `https://image.tmdb.org/t/p/w200/${actor.profile_path}`
+                      : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdYXiyVZD6p-PkavxGCLx5wb2oF0KQaS2NHSttwQnkfEM5ouo_8aEBT_oVlyvq8ybv4DE&usqp=CAU'
+                  }
                 alt={actor.name}
                 width="100"
               ></img>
