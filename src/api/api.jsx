@@ -49,7 +49,7 @@ export const fetchFilmReviews = async id => {
 
 export const fetchFilmsByQuery = async query => {
   const response = await axios.get(
-    `${BASE_URL}/trending/all/day?api_key=${API_KEY}`
+    `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&page=1`
   );
   const result = await response.data.results;
   return result;

@@ -1,4 +1,4 @@
-import { StyledLink } from './layout.styled';
+import { StyledLink } from './AppBar.styled';
 
 export default function Layout() {
   return (
