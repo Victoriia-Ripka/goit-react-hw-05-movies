@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams, useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+// , useLocation
 import { Main, Input, Form, Button, List } from './Movies.styled';
 import PropTypes from 'prop-types';
 import { fetchFilmsByQuery } from 'api/api';
@@ -7,11 +8,11 @@ import ListOfContacts from '../../components/ListOfMovies/listOfMovies';
 import Movie from '../../components/Movie/Movie';
 
 export default function Movies({ movie }) {
+  // const location = useLocation();
   const [query, setQuery] = useState('');
   const [value, setValue] = useState('');
   const [movies, setMovies] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocation();
 
   const handleChange = e => {
     const query = e.target.value.toLowerCase().trim();
@@ -27,9 +28,9 @@ export default function Movies({ movie }) {
   };
 
   useEffect(() => {
-    const query = location.search.slice(7, [location.search.length]);
-    if(query) fetchFilmsByQuery(query).then(data => setMovies(data));
-  }, [location.search]);
+    const query = searchParams.get('query');
+    if (query) fetchFilmsByQuery(query).then(data => setMovies(data));
+  }, [searchParams]);
 
   useEffect(() => {
     if (query !== '') {
@@ -37,9 +38,12 @@ export default function Movies({ movie }) {
     }
   }, [query]);
 
+  const propsForMovie = searchParams.get('query');
+  console.log(propsForMovie);
+
   return (
     <Main>
-      {movie && <Movie movie={movie} />}
+      {movie && <Movie/>}
       {!movie && (
         <Form onSubmit={handleSubmit}>
           <Input type="text" value={value} onChange={handleChange}></Input>
@@ -51,11 +55,6 @@ export default function Movies({ movie }) {
           <ListOfContacts movies={movies} />
         </List>
       )}
-      {/* {visibleMovies && (
-        <List>
-          <ListOfContacts movies={visibleMovies} />
-        </List>
-      )} */}
     </Main>
   );
 }

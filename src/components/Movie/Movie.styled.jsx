@@ -21,8 +21,14 @@ export const GoBack = styled(Link)`
 
 export const MainSection = styled.section`
   display: flex;
+  align-items: flex-start;
   margin: 0px 10px;
   max-width: 900px;
+`;
+
+export const Img = styled.img`
+  width: 250px;
+  object-fit: contain;
 `;
 
 export const MainInformation = styled.div`

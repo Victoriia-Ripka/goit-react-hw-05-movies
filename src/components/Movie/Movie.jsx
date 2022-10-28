@@ -13,6 +13,7 @@ import {
   InfoList,
   InfoLink,
   InfoDiv,
+  Img
 } from './Movie.styled';
 
 export default function Movie() {
@@ -20,6 +21,7 @@ export default function Movie() {
   const [movie, setMovie] = useState(null);
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
+
 
   useEffect(() => {
     fetchFilm(movieID.movieID).then(data => setMovie(data));
@@ -32,7 +34,7 @@ export default function Movie() {
       <main>
         <GoBack to={backLinkHref}>Go back</GoBack>
         <MainSection>
-          <img
+          <Img
             src={
               movie.poster_path
                 ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
@@ -40,7 +42,7 @@ export default function Movie() {
             }
             alt={movie.title ?? movie.name}
             width="200"
-          ></img>
+          ></Img>
           <MainInformation>
             <FilmTitle>
               {movie.title || movie.name} ({movie.release_date.slice(0, 4)})
@@ -64,10 +66,10 @@ export default function Movie() {
           <InfoDiv>
             <InfoList>
               <li>
-                <InfoLink to="cast">Cast</InfoLink>
+                <InfoLink to="cast" state={{from: backLinkHref}}>Cast</InfoLink>
               </li>
               <li>
-                <InfoLink to="reviews">Reviews</InfoLink>
+                <InfoLink to="reviews" state={{from: backLinkHref}}>Reviews</InfoLink>
               </li>
             </InfoList>
             <Outlet />
