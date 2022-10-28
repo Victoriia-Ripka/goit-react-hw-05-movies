@@ -13,4 +13,10 @@ export const ItemLink = styled(Link)`
   color: black;
   font-size: 20px;
   margin: 5px 0 0;
+  padding: 3px 15px;
+
+  :hover,
+  :focus {
+    color: orange;
+  }
 `;

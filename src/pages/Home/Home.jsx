@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchFilms } from 'api/api';
 import { Main, SectionTitle, List, Item, ItemLink } from './Home.styled';
-import Movie from 'components/Movie';
+import Movie from 'components/Movie/Movie';
 
 export default function Home() {
   const location = useLocation();

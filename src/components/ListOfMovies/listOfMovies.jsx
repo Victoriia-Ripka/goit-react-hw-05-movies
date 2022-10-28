@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { Item, ItemLink } from './ListOfMovis.styled';
-import Movie from '../Movie';
+import Movie from '../Movie/Movie';
 import PropTypes from 'prop-types';
 
 export default function ListOfContacts({ movies }) {
