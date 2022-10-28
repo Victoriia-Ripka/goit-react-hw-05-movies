@@ -14,10 +14,6 @@ import {
 export const Review = () => {
   const [reviews, setReviews] = useState(null);
   const id = useParams();
-  // , useLocation
-  // const location = useLocation();
-  // const backLinkHref = location.state?.from ?? '/';
-  // console.log(backLinkHref)
 
   useEffect(() => {
     fetchFilmReviews(id.movieID).then(data => setReviews(data));
