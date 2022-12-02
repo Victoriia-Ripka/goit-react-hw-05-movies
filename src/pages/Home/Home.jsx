@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <Main>
-      <Suspense>
+      <Suspense fallback={<p>Loading...</p>}>
         <SectionTitle> Trending today</SectionTitle>
         <List>
           {movies.length &&
