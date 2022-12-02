@@ -11,6 +11,14 @@ export const fetchFilms = async () => {
   return result;
 };
 
+export const fetchSimilarFilms = async id => {
+  const response = await axios.get(
+    `${BASE_URL}/movie/${id}/similar?api_key=${API_KEY}&total_results=5`
+  );
+  const result = await response.data.results;
+  return result;
+};
+
 export const fetchFilm = async id => {
   try {
     const response = await axios.get(

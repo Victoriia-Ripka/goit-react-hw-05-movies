@@ -1,6 +1,13 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
+export const Main = styled.main`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  max-width: 1800px;
+`;
+
 export const GoBack = styled(Link)`
   text-decoration: none;
   background-color: grey;
@@ -60,6 +67,7 @@ export const InfoSection = styled.section`
 
 export const InfoDiv = styled.div`
   display: flex;
+  max-width: 886px;
 `;
 
 export const InfoList = styled.ul`
@@ -72,6 +80,44 @@ export const InfoLink = styled(Link)`
   color: black;
   font-size: 20px;
   font-weight: 500;
+  :hover,
+  :focus {
+    color: orange;
+  }
+`;
+
+export const Aside = styled.aside`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 450px;
+`;
+
+export const List = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+  gap: 2px;
+  justify-content: center;
+`;
+
+export const ItemList = styled.li`
+  flex-basis: calc((100%-16px) / 6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+`;
+
+export const ItemLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  margin: 5px 0 0;
+  padding: 3px 15px;
+
   :hover,
   :focus {
     color: orange;
